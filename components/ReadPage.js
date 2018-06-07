@@ -15,7 +15,7 @@ export default class ReadPage extends Component {
        <ScrollView>
       <Card>
           <View style={{padding:20}}>
-        <Text>{this.props.navigation.state.params.data}</Text>
+        <Text style={{fontSize:12}}>{this.props.navigation.state.params.data}</Text>
          </View>
       </Card>
       </ScrollView>
