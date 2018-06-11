@@ -16768,7 +16768,7 @@ node:{
                     // მივიღოთ მიმდინარე მომხმარებლის სახელი
                     var userName = os.userInfo().username; 
                      
-                    console.log(` + "Request date: ${greeting.date}`);"`
+                    console.log("Request data:" + greeting,data)
                     console.log(greeting.getMessage(userName));
                     ყველა ექსპორტირებული თვისება და მეთოდი ხელმისაწვდომია სახელით:  greeting.date და greeting.getMessage.
                     
@@ -16786,11 +16786,11 @@ node:{
                         this.age = age;
                         this.displayInfo = function(){
                             
-                           console.log(` + "Name: ${this.name}  Age: ${this.age}`); "`
+                           console.log("Name: " + this.name + " Age:" + this.age);
                         }
                     }
                     User.prototype.sayHi = function() {
-                        console.log(` + "Hello, my name is ${this.name}`);"`
+                        console.log("Hello, my name is " + this.name);
                     };
                      
                     module.exports = User;
@@ -16822,14 +16822,14 @@ node:{
                   შევცვალოთ app.js ფაილის კოდიც:
                   
                   var greeting1 = require("./greeting.js");
-                  console.log(` + "Hello ${greeting1.name}`); //Hello Alice"`
+                  console.log("Hello "  + greeting1.name); //Hello Alice
                    
                   var greeting2 = require("./greeting.js");
                   greeting2.name= "Bob";
                    
-                  console.log(` + "Hello ${greeting2.name}`); //Hello Bob"`
+                  console.log("Hello " + greeting2.name); //Hello Bob
                   // greeting1.name სახელი შეიცვალა
-                  console.log(` + "Hello ${greeting1.name}`); //Hello Bob"`
+                  console.log("Hello " + greeting1.name); //Hello Bob
                   მიუხედავად იმისა, რომ ორჯერ მოხდა greeting.js ფაილის ჩართვა - ორივე ცვლადი greeting1  და greeting2 მიუთითებს ერთი და იმავე ობიექტზე.
                   
                   JavaScript
@@ -17482,7 +17482,7 @@ node:{
                   var fs = require("fs");
                    
                   http.createServer(function(request, response){    
-                      console.log(` + "The requested address: ${request.url}`);"`
+                      console.log("The requested address:" + request.url);
                       if(request.url.startsWith("/public/")){        
                           // მივიღოთ მისამართი სლეშის შემდეგ
                           var filePath = request.url.substr(1);
@@ -17830,7 +17830,7 @@ node:{
                       var catId = request.params["categoryId"];
                       var prodId = request.params["productId"];
                       response.charset= "utf-8"; 
-                    response.send(` + "კატეგორია: ${catId}    საქონელი: ${prodId}`);"`
+                    response.send("კატეგორია: " + catId + "საქონელი:" + prodId);
                   });
                    
                   app.listen(3000);
@@ -17843,7 +17843,7 @@ node:{
                   app.get("/book/:pageName.:pageExt", function (request, response) {
                       var pageName = request.params["pageName"];
                       var pageExt = request.params["pageExt"];
-                    response.send(` + "მოთხოვნილი ფაილი: ${pageName}.${pageExt}`);"`
+                    response.send("მოთხოვნილი ფაილი: " + pageName.pageExt);
                   });
                    
                   
@@ -17865,7 +17865,7 @@ node:{
                   productRouter.route("/:id")
                               .get(function(request, response){
                       
-                                  response.send(` + "საქონელი ${request.params.id}`);"`
+                                  response.send("საქონელი" + request.params.id);
                               });
                   app.use("/products", productRouter);
                    
@@ -17969,7 +17969,7 @@ node:{
                   app.post("/register", urlencodedParser, function (request, response) {
                       if(!request.body) return response.sendStatus(400);
                       console.log(request.body);
-                    response.send(` + "${request.body.userName} - ${request.body.userAge}`);"`
+                    response.send(request.body.userName - request.body.userAge);
                   });
                    
                   app.get("/", function(request, response){
@@ -17988,7 +17988,7 @@ node:{
                   app.post("/register", urlencodedParser, function (request, response) {
                       if(!request.body) return response.sendStatus(400);
                       console.log(request.body);
-                    response.send(` + "${request.body.userName} - ${request.body.userAge}`);"`
+                    response.send(request.body.userName - request.body.userAge);
                   });
                   თვითონ გამოგზავნილი მონაცემების მისაღებად გამოიყენება შემდეგი ტიპის გამოსახულება: request.body.userName, სადაც request.body ახდენს ფორმის ინკაფსულაციას, ხოლო userName წარმოადგენს მონაცემის გასაღებს, რომელიც შეესაბამება შეყვანის ველის ატრიბუტს name html გვერდზე:
                   
@@ -18060,7 +18060,7 @@ node:{
                   app.post("/user", jsonParser, function (request, response) {
                       if(!request.body) return response.sendStatus(400);
                       console.log(request.body);
-                      response.json(` + "${request.body.userName} - ${request.body.userAge}`);"`
+                      response.json(request.body.userName - request.body.userAge);
                   });
                    
                   app.get("/", function(request, response){    
@@ -18076,7 +18076,7 @@ node:{
                   app.post("/user", jsonParser, function (request, response) {
                       if(!request.body) return response.sendStatus(400);
                       console.log(request.body);
-                      response.json(` + "${request.body.userName} - ${request.body.userAge}`);"`
+                      response.json(request.body.userName - request.body.userAge);
                   });
                   გავუშვათ სერვერი და მივმართოთ register.html-ს. მონაცემების შეყვანისა და გაგზავნის შემდეგ კონსოლის ლოგში გამოისახება სერვერის პასუხი`
               },
@@ -18972,7 +18972,7 @@ node:{
                         var expectedResult = 15;
                         var result = operations.multiply(3, 5);
                         if(result!==expectedResult){
-                            throw new Error(` + "Expected ${expectedResult}, but got ${result}`);"`
+                            throw new Error("Expected" + expectedResult + ", but got" + result);
                         }
                     });
                     განვიხილოთ ეს ტესტი. შედეგის ტესტირებისთვის გამოიყენება mocha ფრეიმვორკიდან ფუნქცია it(). ეს ფუნქცია იღებს ორ პარამეტრს: შესასრულებელი ტესტირების ტექსტური აღწერას, რომლითაც შესაძლებელი იქნება მისი იდენტიფიცირება და თვითონ გასატესტ ფუნქციას.
@@ -19010,7 +19010,7 @@ node:{
                         var expectedResult = 16;
                         var result = operations.multiply(3, 5);
                         if(result!==expectedResult){
-                            throw new Error(` + "Expected ${expectedResult}, but got ${result}`);"`
+                            throw new Error("Expected" + expectedResult + ", but got" + result);
                         }
                     });
                     ტესტირებას ვერ გაივლის, რადგან ფუნქცია აბრუნებს 15-ს, ხოლო მოსალოდნელ შედეგში გვიწერია 16. ტესტი განმეორებითი გაშვებისას კონსოლში დაიწერება ამის შესახებ:
@@ -19030,7 +19030,7 @@ node:{
                         var expectedResult = 15;
                         var result = operations.multiply(3, 5);
                         if(result!==expectedResult){
-                            throw new Error(` + "Expected ${expectedResult}, but got ${result}`);"`
+                            throw new Error("Expected" + expectedResult + ", but got" + result);
                         }
                     });
                     it("should add two numbers", function(){
@@ -19038,7 +19038,9 @@ node:{
                         var expectedResult = 16;
                         var result = operations.add(9, 7);
                         if(result!==expectedResult){
-                            throw new Error(` + "Expected ${expectedResult}, but got ${result}`);"`
+                            throw new Error("Expected" + expectedResult + ", but got" + result);
+                            
+                            
                         }
                     });
                     გავუშვათ ტესტი:
@@ -19066,7 +19068,9 @@ node:{
                         var expectedResult = 15;
                         var result = operations.multiply(3, 5);
                         if(result!==expectedResult){
-                            throw new Error(` + "Expected ${expectedResult}, but got ${result}`);"`
+                            throw new Error("Expected" + expectedResult + ", but got" + result);
+                       
+                            
                         }
                     });
                     it("should add two numbers", function(){
@@ -19074,7 +19078,9 @@ node:{
                         var expectedResult = 16;
                         var result = operations.add(9, 7);
                         if(result!==expectedResult){
-                            throw new Error(` + "Expected ${expectedResult}, but got ${result}`);"`
+                            throw new Error("Expected" + expectedResult + ", but got" + result);
+                         
+                          
                         }
                     });
                      
@@ -19083,7 +19089,9 @@ node:{
                         var expectedResult = 12;
                         operations.multiplayAsync(4, 3, function(result){
                             if(result!==expectedResult){
-                                throw new Error(` + "Expected ${expectedResult}, but got ${result}`);"`
+                                throw new Error("Expected" + expectedResult + ", but got" + result);
+                                
+                            
                             }
                             done();
                         });
@@ -19099,7 +19107,8 @@ node:{
                   data:`წინა თემაში ტესტის შედეგის შესამოწმებლად გამოვიყენეთ მიღებული შედეგის მოსალოდნელთან შედარება:
 
                   if(result!==expectedResult){
-                      throw new Error(` + "Expected ${expectedResult}, but got ${result}`);"`
+                    throw new Error("Expected" + expectedResult, but got + result);
+                   
                   }
                   მსგავსი შედარება საკმაოდ ტრივიალურია და გამოიყენება ბევრ ტესტში მცირეოდენი ცვლილებებით. ტესტის შედეგების შესამოწმებლად Node.js-ში შეიქმნა სპეციალური მოდული assert. ასევე არსებობს სხვადასხვა ბიბლიოთეკები, რომელთაც უწოდებენ Assertions და რომლებიც ემსახურებიან იგივე მიზნებს: should.js, expect.js და სხვა. მოცემულ შემთხვევაში ჩვენ განვიხილოთ მუშაობა Assert მოდულთან.
                   
