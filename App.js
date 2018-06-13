@@ -26,7 +26,7 @@ import logger from "redux-logger"
 import {Provider} from "react-redux"
 import MainRouter from "./components/MainRouter"
 var store = createStore(reducer, applyMiddleware(logger))
-
+import {AdMobInterstitial } from 'react-native-admob'
 const uiTheme = {
 
     palette: {
@@ -55,6 +55,8 @@ export default class App extends Component {
     }
 
     componentDidMount() {
+        AdMobInterstitial.setAdUnitID('ca-app-pub-6370427711797263/1041980552');
+
       store.dispatch({type: "DrawerRef", payload: this.setDrawer})
       
     }

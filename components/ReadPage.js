@@ -2,11 +2,19 @@ import React, { Component } from 'react'
 import { Text, View,ScrollView } from 'react-native'
 import NavBar from './toolbar';
 import { Card } from 'react-native-material-ui';
+import { AdMobInterstitial } from 'react-native-admob';
 
 
 export default class ReadPage extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        setTimeout(() => {
+
+          AdMobInterstitial.requestAd(function() {
+            AdMobInterstitial.showAd()
+          }) 
+        },1000)
+
     }
   render() {
     return (

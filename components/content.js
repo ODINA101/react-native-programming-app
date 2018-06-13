@@ -4,6 +4,9 @@ import { Card } from 'react-native-material-ui';
 import Data from "./data"
 import { StackNavigator } from "react-navigation"
 import NavBar from './toolbar';
+import {
+  AdMobInterstitial,
+} from 'react-native-admob'
 import {connect} from "react-redux"
  class Content extends Component {
    constructor(props){
